@@ -87,8 +87,7 @@ allVersions:
   - v6.7.0
   - v6.8.0
   - v6.9.0
-  - v6.10.0
-currentVersion: v6.10.0
+currentVersion: v6.9.0
 ltsVersions:
   - v6.4.0
   - v6.8.0
