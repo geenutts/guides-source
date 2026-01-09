@@ -259,7 +259,7 @@ export default CustomSelect;
 
 This can be a powerful refactoring technique to break up large components into smaller ones. (where it makes sense!)
 
-## Low-level, Pure-Javascript format
+## Low-level, Pure-JavaScript format
 
 All of template-tag format has an equivalent pure-JS representation.
 
@@ -284,7 +284,7 @@ const LandingPage = template(`{{pageTitle "Welcome"}}
 })
 ```
 
-And the class-based-component case converts liks this:
+And the class-based-component case converts likes this:
 
 
 ```gjs
@@ -356,7 +356,7 @@ function buildTemplate() {
 
 ### Scope Arguments
 
-The `<template>` syntax in GJS is able to "see" outer Javascript scope (like the value of `pageTitle` in the examples above). When we convert the template to a JavaScript string, that's no longer possible, so we need to add either the `scope` or `eval` arguments. The examples above use `scope`, which is best when you know precisely which values from JavaScript scope are needed inside the template. For more dynamic situations, you can alternatively pass `eval`:
+The `<template>` syntax in GJS is able to "see" outer JavaScript scope (like the value of `pageTitle` in the examples above). When we convert the template to a JavaScript string, that's no longer possible, so we need to add either the `scope` or `eval` arguments. The examples above use `scope`, which is best when you know precisely which values from JavaScript scope are needed inside the template. For more dynamic situations, you can alternatively pass `eval`:
 
 ```js
 import { template } from '@ember/template-compiler/runtime';
