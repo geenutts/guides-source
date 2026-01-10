@@ -24,8 +24,8 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 6.8.0
-node: 18.20.8
+ember-cli: 6.9.1
+node: 20.19.6
 os: linux x64
 ```
 
@@ -61,6 +61,7 @@ Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-renta
   create app/models/.gitkeep
   create app/router.js
   create app/routes/.gitkeep
+  create app/services/.gitkeep
   create app/styles/app.css
   create /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals/app/templates/application.gjs
   create config/ember-cli-update.json
@@ -122,6 +123,8 @@ super-rentals
 │   │   └── .gitkeep
 │   ├── routes
 │   │   └── .gitkeep
+│   ├── services
+│   │   └── .gitkeep
 │   ├── styles
 │   │   └── app.css
 │   ├── templates
@@ -165,7 +168,7 @@ super-rentals
 ├── testem.cjs
 └── vite.config.mjs
 
-27 directories, 56 files
+28 directories, 58 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
@@ -189,13 +192,14 @@ building...
 
 Build successful (9761ms)
 
+
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 436ms
+Babel: @embroider/macros (1) | 389ms
 
 
 
-  VITE v6.3.6  ready in 4143 ms
+  VITE v7.3.0  ready in 3754 ms
 
   ➜  Local:   http://localhost:4200/
 ```
