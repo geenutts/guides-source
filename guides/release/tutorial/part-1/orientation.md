@@ -137,29 +137,6 @@ super-rentals
 │   ├── environment.js
 │   ├── optional-features.json
 │   └── targets.js
-├── dist
-│   ├── @embroider
-│   │   └── virtual
-│   │       ├── app.css
-│   │       ├── test-support.css
-│   │       ├── test-support.js
-│   │       ├── vendor.css
-│   │       └── vendor.js
-│   ├── assets
-│   │   ├── app-BjOtgFWK.js
-│   │   ├── app-BsLReVUA.css
-│   │   ├── main-RAbakfok.js
-│   │   ├── modules-4-12-fT4Xp44s.js
-│   │   ├── tests-CFFHI-JI.css
-│   │   └── tests-CGnMmE3Y.js
-│   ├── ember-welcome-page
-│   │   └── images
-│   │       └── construction.png
-│   ├── tests
-│   │   └── index.html
-│   ├── index.html
-│   ├── robots.txt
-│   └── testem.js
 ├── public
 │   └── robots.txt
 ├── tests
