@@ -148,9 +148,6 @@ super-rentals
 │   │   └── .gitkeep
 │   ├── index.html
 │   └── test-helper.js
-├── tmp
-│   └── compat-prebuild
-│       └── .stage2-output
 ├── .editorconfig
 ├── .ember-cli
 ├── .env.development
