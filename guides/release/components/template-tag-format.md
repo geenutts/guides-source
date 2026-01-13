@@ -260,6 +260,117 @@ export default CustomSelect;
 
 This can be a powerful refactoring technique to break up large components into smaller ones. (where it makes sense!)
 
+## Low-level, Pure-JavaScript format
+
+All of template-tag format has an equivalent pure-JS representation.
+
+The template-only-component case converts like this:
+
+```gjs
+// ----- GJS Syntax ------------------------
+import { pageTitle } from "ember-page-title";
+
+const LandingPage = <template>
+  {{pageTitle "Welcome"}}
+  <h1>Welcome</h1>
+</template>;
+
+// ------ Equivalent JS Syntax -------------
+import { pageTitle } from "ember-page-title";
+import { template } from '@ember/template-compiler';
+
+const LandingPage = template(`{{pageTitle "Welcome"}}
+<h1>Welcome</h1>`, {
+  scope: () => ({ pageTitle })
+})
+```
+
+And the class-based-component case converts likes this:
+
+
+```gjs
+// ------ GJS Syntax ---------------
+import { pageTitle } from "ember-page-title";
+
+class LandingPage extends Component {
+  <template>
+    {{pageTitle "Welcome"}}
+    <h1>Welcome</h1>
+  </template>
+}
+
+// ------ Equivalent JS Syntax -------------
+import { pageTitle } from "ember-page-title";
+import { template } from '@ember/template-compiler';
+
+class LandingPage extends Component {
+  static {
+    template(`{{pageTitle "Welcome"}}
+<h1>Welcome</h1>`, {
+      component: this,
+      scope: () => ({ pageTitle })
+    });
+  }
+}
+```
+
+Just like the `<template></template>` syntax, `template()` from `@ember/template-compiler` can be build-time optimized, so you're not allowed to use any syntax other than string literals for the first argument. For example:
+
+```js
+import { template } from '@ember/template-compiler';
+
+// This is OK because the first argument to template() is a string literal:
+const LandingPage = template(`{{pageTitle "Welcome"}}
+<h1>Welcome</h1>`, {
+  scope: () => ({ pageTitle })
+})
+
+// This is a build error because the first argument is not a string literal:
+const LandingPage = template(buildTemplate(), {
+  scope: () => ({ pageTitle })
+})
+
+function buildTemplate() {
+  return `{{pageTitle "Welcome"}}
+<h1>Welcome</h1>`;
+}
+```
+
+If you want to relax this restriction, you can opt-in to runtime template compilation instead. This is more expensive at runtime and pulls additional template-compilation code into your app. But it's appropriate for dynamic environments like interactive development tools:
+
+```js
+// Notice the different import path here:
+import { template } from '@ember/template-compiler/runtime';
+
+// This is now OK because no static build-time analysis will 
+// be performed, and you can use arbitrary code to produce a 
+// string value at runtime.
+const LandingPage = template(buildTemplate(), {
+  scope: () => ({ pageTitle })
+})
+
+function buildTemplate() {
+  return `{{pageTitle "Welcome"}}
+<h1>Welcome</h1>`;
+}
+```
+
+### Scope Arguments
+
+The `<template>` syntax in GJS is able to "see" outer JavaScript scope (like the value of `pageTitle` in the examples above). When we convert the template to a JavaScript string, that's no longer possible, so we need to add either the `scope` or `eval` arguments. The examples above use `scope`, which is best when you know precisely which values from JavaScript scope are needed inside the template. For more dynamic situations, you can alternatively pass `eval`:
+
+```js
+import { template } from '@ember/template-compiler/runtime';
+
+template(someArbitraryTemplateString(), {
+  eval() {
+    return eval(arguments[0]);
+  }
+})
+```
+
+The above example is the *only* way you should implement the `eval` callback. It uses `arguments` instead of an explicitly-named function parameter because otherwise that parameter could shadow the value that the template compiler is trying to retrieve from an outer scope.
+
 ## Testing
 
 Historically, Ember's integration tests have been written using the `hbs` tagged template literal. This is no longer necessary with the template tag format. Instead, use the `<template>` tag to define a template to render.
