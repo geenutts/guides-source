@@ -9,11 +9,7 @@ When Ember first renders a component, it renders the initial _state_ of that
 component - the state of the instance, and state of the arguments that are
 passed to it:
 
-```handlebars {data-filename=app/components/hello.hbs}
-{{this.greeting}}, {{@name}}!
-```
-
-```js {data-filename=app/components/hello.js}
+```gjs {data-filename=app/components/hello.gjs}
 import Component from '@glimmer/component';
 
 export default class HelloComponent extends Component {
@@ -29,11 +25,19 @@ export default class HelloComponent extends Component {
         return 'Hola';
     }
   }
+
+  <template>
+    {{this.greeting}}, {{@name}}!
+  </template>
 }
 ```
 
-```handlebars {data-filename=app/templates/application.hbs}
-<Hello @name="Jen Weber">
+```gjs {data-filename=app/templates/application.gjs}
+import 'my-app/components/hello';
+
+<template>
+  <Hello @name="Jen Weber">
+</template>
 ```
 
 When Ember renders this template, we get:
@@ -59,11 +63,12 @@ Trackable values are values that:
 
 We can do this by marking the field with the `@tracked` decorator:
 
-```js {data-filename=app/components/hello.js}
+```gjs {data-filename=app/components/hello.gjs data-diff="+2,-5,+6"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 export default class HelloComponent extends Component {
+  language = 'en';
   @tracked language = 'en';
 
   get greeting() {
@@ -76,6 +81,10 @@ export default class HelloComponent extends Component {
         return 'Hola';
     }
   }
+
+  <template>
+    {{this.greeting}}, {{@name}}!
+  </template>
 }
 ```
 
@@ -95,20 +104,10 @@ Tracked properties can be updated like any other property, using standard
 JavaScript syntax. For instance, we could update a tracked property via an
 action, as in this example component.
 
-```handlebars {data-filename=app/components/hello.hbs}
-{{this.greeting}}, {{@name}}!
-
-<select {{on "change" this.updateLanguage}}>
-  <option value="en">English</option>
-  <option value="de">German</option>
-  <option value="sp">Spanish</option>
-</select>
-```
-
-```js {data-filename=app/components/hello.js}
+``` gjs { data-filename=app/components/hello.gjs data-diff="+3,+18,+19,+20,+21,+25,+26,+27,+28,+29,+30" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import { on } from '@ember/modifier';
 
 export default class HelloComponent extends Component {
   @tracked language = 'en';
@@ -124,10 +123,19 @@ export default class HelloComponent extends Component {
     }
   }
 
-  @action
-  updateLanguage(event) {
+  updateLanguage = (event) => {
     this.language = event.target.value;
-  }
+  };
+
+  <template>
+    {{this.greeting}}, {{@name}}!
+
+    <select {{on "change" this.updateLanguage}}>
+      <option value="en">English</option>
+      <option value="de">German</option>
+      <option value="sp">Spanish</option>
+    </select>
+  </template>
 }
 ```
 
@@ -140,10 +148,10 @@ Another way that a tracked property could be updated is asynchronously, if
 you're sending a request to the server. For instance, maybe we would want to
 load the user's preferred language:
 
-```js
+``` gjs { data-filename=app/components/hello.gjs data-diff="+6,+7,+8,+9,+10,+11,+12,+13,+14,+15" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import { on } from '@ember/modifier';
 
 export default class HelloComponent extends Component {
   constructor() {
@@ -168,6 +176,20 @@ export default class HelloComponent extends Component {
         return 'Hola';
     }
   }
+
+  updateLanguage = (event) => {
+    this.language = event.target.value;
+  };
+
+  <template>
+    {{this.greeting}}, {{@name}}!
+
+    <select {{on "change" this.updateLanguage}}>
+      <option value="en">English</option>
+      <option value="de">German</option>
+      <option value="sp">Spanish</option>
+    </select>
+  </template>
 }
 ```
 
@@ -180,16 +202,26 @@ app.
 So far we've only shown tracked properties working through getters, but tracking
 works through _methods_ or _functions_ as well:
 
-```js
+``` gjs { data-diff="+17,+18,+19,+20,+21,+24,+25,+26,+27" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import { on } from '@ember/modifier';
 
 export default class HelloComponent extends Component {
+  constructor() {
+    super(...arguments);
+
+    fetch('/api/preferences')
+      .then(r => r.json()) // convert the response to a JS object
+      .then(response => {
+        this.language = response.preferredLanguage;
+      });
+  }
+
   @tracked language = 'en';
   @tracked supportedLanguages = ['en', 'de', 'es'];
 
-  isSupported(language) {
+  isSupported = (language) => {
     return this.supportedLanguages.includes(language);
   }
 
@@ -207,6 +239,20 @@ export default class HelloComponent extends Component {
         return 'Hola';
     }
   }
+
+  updateLanguage = (event) => {
+    this.language = event.target.value;
+  };
+
+  <template>
+    {{this.greeting}}, {{@name}}!
+
+    <select {{on "change" this.updateLanguage}}>
+      <option value="en">English</option>
+      <option value="de">German</option>
+      <option value="sp">Spanish</option>
+    </select>
+  </template>
 }
 ```
 
@@ -237,7 +283,7 @@ export default class Person {
 
 ```js {data-filename=app/routes/application.js}
 import Route from '@ember/routing/route';
-import Person from '../../../../utils/person';
+import Person from 'my-app/utils/person';
 
 export default class ApplicationRoute extends Route {
   model() {
@@ -246,25 +292,25 @@ export default class ApplicationRoute extends Route {
 }
 ```
 
-```js {data-filename=app/controllers/application.js}
-import Controller from '@ember/controller';
-import { action } from '@ember/object';
+```gjs {data-filename=app/templates/application.gjs}
+import Component from '@glimmer/component';
+import { on } from '@ember/modifier';
+import { fn } from '@ember/helper';
 
-export default class ApplicationController extends Controller {
-  @action
-  updateName(title, name) {
-    this.model.title = title;
-    this.model.name = name;
-  }
+export default class ApplicationRouteComponent extends Component {
+  updateName = (title, name) => {
+    this.args.model.title = title;
+    this.args.model.name = name;
+  };
+
+  <template>
+    {{@model.fullName}}
+
+    <button type="button" {{on "click" (fn this.updateName 'Prof.' 'Tomster')}}>
+      Update Name
+    </button>
+  </template>
 }
-```
-
-```handlebars {data-filename=app/templates/application.hbs}
-{{@model.fullName}}
-
-<button type="button" {{on "click" (fn this.updateName 'Prof.' 'Tomster')}}>
-  Update Name
-</button>
 ```
 
 As long as the properties are tracked, and accessed when rendering the template
@@ -276,12 +322,12 @@ Generally, you should try to create classes with their tracked properties
 enumerated and decorated with `@tracked`, instead of relying on dynamically
 created POJOs. In some cases however, if your usage of properties on POJOs is
 too dynamic, you may not be able to enumerate every single property that could
-be tracked. In this case, you can use `TrackedObject` from `tracked-built-ins`:
+be tracked. In this case, you can use `trackedObject` from [@ember/reactive/collections](https://api.emberjs.com/ember/release/modules/@ember%2Freactive%2Fcollections):
 
 ```js
-import { TrackedObject } from 'tracked-built-ins';
+import { trackedObject } from '@ember/reactive/collections';
 
-let obj = new TrackedObject({
+let obj = trackedObject({
   a: 1,
   b: 2,
 })
@@ -291,21 +337,21 @@ obj.c = 3;
 ```
 
 All property reading and writing on this object is automatically tracked.
-`TrackedObject` is "shallowly" tracked. `obj.c = 4` would be tracked, but
+`trackedObject` is "shallowly" tracked. `obj.c = 4` would be tracked, but
 `obj.c.somethingDeeper = 5` would not be tracked unless you've also made sure
-that the contents of `obj.c` is itself another `TrackedObject`.
+that the contents of `obj.c` is itself another `trackedObject`.
 
 
 #### Arrays
 
-When you want to track the contents of an Array, you can use `TrackedArray` from
-`tracked-built-ins`:
+When you want to track the contents of an Array, you can use `trackedArray` from [@ember/reactive/collections](https://api.emberjs.com/ember/release/modules/@ember%2Freactive%2Fcollections):
+
 
 ```js
-import { TrackedArray } from 'tracked-built-ins';
+import { trackedArray } from '@ember/reactive/collections';
 
 class ShoppingList {
-  items = new TrackedArray([]);
+  items = trackedArray([]);
 
   addItem(item) {
     this.items.push(item);
@@ -313,7 +359,7 @@ class ShoppingList {
 }
 ```
 
-`TrackedArray` supports all the normal native `Array` methods, ensuring that
+`trackedArray` supports all the normal native `Array` methods, ensuring that
 their reads and writes are tracked.
 
 ## Caching of tracked properties
@@ -357,12 +403,13 @@ getter is very expensive, however, you will want to cache the value and
 retrieve it when the dependencies haven't changed. You want to recompute only
 if a dependency has been updated.
 
-Ember's [@cached decorator](https://github.com/ember-polyfills/ember-cache-primitive-polyfill) lets
+Ember's [@cached decorator](https://api.emberjs.com/ember/6.8/functions/@glimmer%2Ftracking/cached) lets
 you cache (or "memoize") a getter by simply marking it as `@cached`.
 
 With this in mind, let's introduce caching to `aspectRatio`:
 
-```js
+``` js { data-diff="-1,+2,+10,-22,+23,-28,+29" }
+import { tracked } from '@glimmer/tracking';
 import { cached, tracked } from '@glimmer/tracking';
 
 let count = 0;
@@ -383,11 +430,13 @@ let photo = new Photo();
 console.log(photo.aspectRatio); // 1.5
 console.log(count); // 1
 console.log(photo.aspectRatio); // 1.5
+console.log(count); // 2
 console.log(count); // 1
 
 photo.width = 800;
 
 console.log(photo.aspectRatio); // 2
+console.log(count); // 3
 console.log(count); // 2
 ```
 
@@ -395,7 +444,5 @@ From the value of `count`, we see that, this time, `aspectRatio` was calculated
 only twice.
 
 In general, you should avoid using @cached unless you have confirmed that the getter you are decorating is computationally expensive, since @cached adds a small amount of overhead to the getter.
-
-The @cached decorator was released in Ember 4.1. If you want to leverage this API between versions 3.13 and 4.1, you can install [ember-cached-decorator-polyfill](https://github.com/ember-polyfills/ember-cached-decorator-polyfill) to your project.
 
 <!-- eof - needed for pages that end in a code block  -->

@@ -24,8 +24,8 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 6.4.0
-node: 18.20.8
+ember-cli: 6.9.1
+node: 20.19.6
 os: linux x64
 ```
 
@@ -36,47 +36,50 @@ If a version number is shown, you're ready to go.
 We can create a new project using Ember CLI's `new` command. It follows the pattern `ember new <project-name>`. In our case, the project name would be `super-rentals`. We will also include a `--lang en` option. This sets our app's primary language to English and improves the website's [accessibility](../../../accessibility/application-considerations/).
 
 ```shell
-$ ember new super-rentals --lang en
-installing app
-Ember CLI v6.4.0
-
+$ ember new super-rentals --lang en --strict
+installing app-blueprint
 Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals:
   create .editorconfig
   create .ember-cli
+  create .env.development
   create .github/workflows/ci.yml
   create .prettierignore
-  create .prettierrc.js
+  create .prettierrc.mjs
   create .stylelintignore
-  create .stylelintrc.js
-  create .template-lintrc.js
+  create .stylelintrc.cjs
+  create .template-lintrc.mjs
   create .watchmanconfig
   create README.md
+  create /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals/babel.config.cjs
   create /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals/eslint.config.mjs
   create app/app.js
   create app/components/.gitkeep
+  create app/config/environment.js
   create app/controllers/.gitkeep
   create app/deprecation-workflow.js
   create app/helpers/.gitkeep
-  create app/index.html
   create app/models/.gitkeep
   create app/router.js
   create app/routes/.gitkeep
+  create app/services/.gitkeep
   create app/styles/app.css
-  create app/templates/application.hbs
+  create /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals/app/templates/application.gjs
   create config/ember-cli-update.json
   create config/environment.js
   create config/optional-features.json
   create config/targets.js
   create ember-cli-build.js
   create .gitignore
+  create index.html
   create package.json
   create public/robots.txt
-  create testem.js
+  create testem.cjs
   create tests/helpers/index.js
   create tests/index.html
   create tests/integration/.gitkeep
   create tests/test-helper.js
   create tests/unit/.gitkeep
+  create vite.config.mjs
 
 Installing packages... This might take a couple of minutes.
 npm: Installing dependencies ...
@@ -110,6 +113,8 @@ super-rentals
 ├── app
 │   ├── components
 │   │   └── .gitkeep
+│   ├── config
+│   │   └── environment.js
 │   ├── controllers
 │   │   └── .gitkeep
 │   ├── helpers
@@ -118,13 +123,14 @@ super-rentals
 │   │   └── .gitkeep
 │   ├── routes
 │   │   └── .gitkeep
+│   ├── services
+│   │   └── .gitkeep
 │   ├── styles
 │   │   └── app.css
 │   ├── templates
-│   │   └── application.hbs
+│   │   └── application.gjs
 │   ├── app.js
 │   ├── deprecation-workflow.js
-│   ├── index.html
 │   └── router.js
 ├── config
 │   ├── ember-cli-update.json
@@ -144,22 +150,25 @@ super-rentals
 │   └── test-helper.js
 ├── .editorconfig
 ├── .ember-cli
-├── .eslintcache
+├── .env.development
 ├── .gitignore
 ├── .prettierignore
-├── .prettierrc.js
+├── .prettierrc.mjs
 ├── .stylelintignore
-├── .stylelintrc.js
-├── .template-lintrc.js
+├── .stylelintrc.cjs
+├── .template-lintrc.mjs
 ├── .watchmanconfig
 ├── README.md
+├── babel.config.cjs
 ├── ember-cli-build.js
 ├── eslint.config.mjs
+├── index.html
 ├── package.json
 ├── package-lock.json
-└── testem.js
+├── testem.cjs
+└── vite.config.mjs
 
-16 directories, 37 files
+28 directories, 58 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
@@ -172,11 +181,27 @@ Ember CLI comes with a lot of different commands for a variety of development ta
 $ npm start
 
 > super-rentals@0.0.0 start
-> ember serve
+> vite
+
+Building
+
+Environment: development
 
 building... 
 
-Build successful (9761ms) – Serving on http://localhost:4200/
+
+Build successful (9761ms)
+
+
+Slowest Nodes (totalTime >= 5%) | Total (avg)
+-+-
+Babel: @embroider/macros (1) | 389ms
+
+
+
+  VITE v7.3.0  ready in 3754 ms
+
+  ➜  Local:   http://localhost:4200/
 ```
 
 The development server is responsible for compiling our app and serving it to the browsers. It may take a while to boot up. Once it's up and running, open your favorite browser and head to <http://localhost:4200>. You should see the following welcome page:
@@ -201,40 +226,47 @@ You can exit out of the development server at any time by typing `Ctrl + C` into
 
 The development server has a feature called _live reload_, which monitors your app for file changes, automatically re-compiles everything, and refreshes any open browser pages. This comes in really handy during development, so let's give that a try!
 
-As text on the welcome page pointed out, the source code for the page is located in `app/templates/application.hbs`. Let's try to edit that file and replace it with our own content:
+As text on the welcome page pointed out, the source code for the page is located in `app/templates/application.gjs`. Let's try to edit that file and replace it with our own content:
 
-```handlebars { data-filename="app/templates/application.hbs" data-diff="-1,-2,-3,-4,-5,-6,-7,+8" }
-{{page-title "SuperRentals"}}
+```gjs { data-filename="app/templates/application.gjs" data-diff="-1,-2,-3,-5,-6,-7,-8,-9,-10,-11,+12" }
+import { pageTitle } from 'ember-page-title';
+import { WelcomePage } from 'ember-welcome-page';
 
-{{outlet}}
+<template>
+  {{pageTitle "SuperRentals"}}
 
-{{! The following component displays Ember's default welcome message. }}
-<WelcomePage />
-{{! Feel free to remove this! }}
-Hello World!!!
+  {{outlet}}
+
+  {{! The following component displays Ember's default welcome message. }}
+  <WelcomePage />
+  {{! Feel free to remove this! }}
+  Hello World!!!
+</template>
 ```
 
 Soon after saving the file, your browser should automatically refresh and render our greetings to the world. Neat!
 
 <img src="/images/tutorial/part-1/orientation/hello-world@2x.png" alt="Hello World!!!" width="1024" height="250">
 
-When you are done experimenting, go ahead and delete the `app/templates/application.hbs` file. We won't be needing this for a while, so let's start afresh. We can add it back later when we have a need for it.
+When you are done experimenting, go ahead and delete the `app/templates/application.gjs` file. We won't be needing this for a while, so let's start afresh. We can add it back later when we have a need for it.
 
 Again, if you still have your browser tab open, your tab will automatically re-render a blank page as soon as you delete the file. This reflects the fact that we no longer have an application template in our app.
 
 ## Working with HTML, CSS and Assets in an Ember App
 
-Create a `app/templates/index.hbs` file and paste the following markup.
+Create a `app/templates/index.gjs` file and paste the following markup.
 
-```handlebars { data-filename="app/templates/index.hbs" }
-<div class="jumbo">
-  <div class="right tomster"></div>
-  <h2>Welcome to Super Rentals!</h2>
-  <p>We hope you find exactly what you're looking for in a place to stay.</p>
-</div>
+```gjs { data-filename="app/templates/index.gjs" }
+<template>
+  <div class="jumbo">
+    <div class="right tomster"></div>
+    <h2>Welcome to Super Rentals!</h2>
+    <p>We hope you find exactly what you're looking for in a place to stay.</p>
+  </div>
+</template>
 ```
 
-If you are thinking, "Hey, that looks like HTML!", then you would be right! In their simplest form, Ember templates are really just HTML. If you are already familiar with HTML, you should feel right at home here.
+If you are thinking, "Hey, that looks like HTML!", then you would be right! In their simplest form, Ember templates are really just HTML wrapped in a `<template>` tag. If you are already familiar with HTML, you should feel right at home here.
 
 Of course, unlike HTML, Ember templates can do a lot more than just displaying static content. We will see that in action soon.
 

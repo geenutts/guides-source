@@ -22,7 +22,7 @@ BelongsTo
 blockquote
 blogPost
 bookmarklet
-Browserlist
+Browserslist
 callouts
 camelize
 centric
@@ -52,6 +52,7 @@ debounce
 declaratively
 DefinitelyTyped
 deps
+dev
 draggable
 dropdown
 durations
@@ -62,6 +63,7 @@ els-addon-typed-templates
 ember-a11y
 ember-a11y-refocus
 ember-a11y-testing
+ember-cli
 ember-cli-cjs-transform
 ember-cli-deprecation-workflow
 ember-cli-document-title
@@ -132,6 +134,7 @@ linters
 lookups
 LSP
 Mapbox
+TomTom
 MDN
 metaprogramming
 misspelt
@@ -180,6 +183,8 @@ rerender
 rerendering
 rerenders
 RequestManager
+rollup
+Rollup
 routable
 RunDOC
 runnable
@@ -219,6 +224,7 @@ templating
 TextMate
 todo
 todos
+toolchain
 tooltip
 tooltips
 trackable
@@ -254,3 +260,7 @@ websocket
 working-with-html-css-and-javascript
 yay
 ZEIT
+userQuestion
+vite
+Vite
+bundler
