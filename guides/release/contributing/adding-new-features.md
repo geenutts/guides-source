@@ -19,10 +19,10 @@ and how to help move accepted RFCs to full completion, visit the
 Here are some tips for working in the [`ember.js` repository](https://github.com/emberjs/ember.js).
 
 To learn how to make a pull request, review the
-[`CONTRIBUTING.md`](https://github.com/emberjs/ember.js/blob/master/CONTRIBUTING.md)
+[`CONTRIBUTING.md`](https://github.com/emberjs/ember.js/blob/main/CONTRIBUTING.md)
 instructions.
 
-In general, new feature development should be done on the `master` branch.
+In general, new feature development should be done on the `main` branch.
 
 Bugfixes should not introduce new APIs or break existing APIs, and do
 not need feature flags.
@@ -40,20 +40,20 @@ possible.
 ### Urgent Bug Fixes
 
 Urgent bugfixes are bugfixes that need to be applied to the existing
-release branch. If possible, they should be made on master and prefixed
+release branch. If possible, they should be made on main and prefixed
 with `[BUGFIX release]`.
 
 ### Beta Bug Fixes
 
 Beta bugfixes are bugfixes that need to be applied to the beta branch.
-If possible, they should be made on master and tagged with `[BUGFIX
+If possible, they should be made on main and tagged with `[BUGFIX
 beta]`.
 
 ### Security Fixes
 
 Security fixes need to be applied to the beta branch, the current
 release branch, and the previous tag. If possible, they should be made
-on master and tagged with `[SECURITY]`.
+on main and tagged with `[SECURITY]`.
 
 ## Features
 
@@ -66,7 +66,9 @@ form because functions change the surrounding scope and may introduce
 problems with early return.
 
 ```javascript
-if (Ember.FEATURES.isEnabled("feature")) {
+import { FEATURES } from '@ember/canary-features';
+
+if (FEATURES.isEnabled("feature")) {
   // implementation
 }
 ```
@@ -83,23 +85,23 @@ beta or release branches. Once a beta or release branch has been cut, it
 contains all of the new features it will ever have.
 
 If a feature has made it into beta or release, and you make a commit to
-master that fixes a bug in the feature, treat it like a bugfix as
+main that fixes a bug in the feature, treat it like a bugfix as
 described above.
 
 ### Feature Naming Conventions
 
 ```javascript {data-filename=config/environment.js}
-Ember.FEATURES['<packageName>-<feature>'] // if package specific
-Ember.FEATURES['container-factory-injections']
-Ember.FEATURES['htmlbars']
+FEATURES['<packageName>-<feature>'] // if package specific
+FEATURES['container-factory-injections']
+FEATURES['htmlbars']
 ```
 
 ## Builds
 
-The Canary build, which is based off master, will include all features,
+The Canary build, which is based off main, will include all features,
 guarded by the conditionals in the original source. This means that
 users of the canary build can enable whatever features they want by
-enabling them before creating their Ember.Application.
+enabling them before creating their Application.
 
 ```javascript {data-filename=config/environment.js}
 module.exports = function(environment) {
@@ -135,7 +137,7 @@ remove the conditionals for features in the list.
 
 For a new PR:
 
-1. Tests will run against master with all feature flags on.
+1. Tests will run against main with all feature flags on.
 2. If a commit is tagged with `[BUGFIX beta]`, the commit will be
    cherry-picked into beta, and the automated tests will be executed on that
    branch. If the commit doesn't apply cleanly or the tests fail, the
@@ -144,7 +146,7 @@ For a new PR:
    into release, and the tests will be executed on the release branch. If the commit
    doesn't apply cleanly or the tests fail, the build will fail.
 
-For a new commit to master:
+For a new commit to main:
 
 1. Tests will be executed as described above.
 2. If the build passes, the commits will be cherry-picked into the
@@ -164,9 +166,9 @@ any feature isn't ready, it is removed from `features.json`.
 
 Once this is done, the beta branch is tagged and merged into release.
 
-#### Master Branch
+#### main Branch
 
-All features on the master branch are vetted for readiness. In order for
+All features on the main branch are vetted for readiness. In order for
 a feature to be considered "ready" at this stage, it must be ready as-is
 with no blockers. Features are a no-go even if they are close and
 additional work on the beta branch would make it ready.
@@ -174,7 +176,7 @@ additional work on the beta branch would make it ready.
 Because this process happens every six weeks, there will be another
 opportunity for a feature to make it soon enough.
 
-Once this is done, the master branch is merged into beta. A
+Once this is done, the main branch is merged into beta. A
 `features.json` file is added with the features that are ready.
 
 ### Beta Releases

@@ -251,9 +251,9 @@ export default {
 
 ### Getting an Application Instance from a Factory Instance
 
-[`Ember.getOwner`](https://api.emberjs.com/ember/release/classes/@ember%2Fapplication/methods/getOwner?anchor=getOwner) will retrieve the application instance that "owns" an
+[`getOwner`](https://api.emberjs.com/ember/release/functions/@ember%2Fowner/getOwner) will retrieve the application instance that "owns" an
 object. This means that framework objects like components, helpers, and routes
-can use [`Ember.getOwner`](https://api.emberjs.com/ember/release/classes/@ember%2Fapplication/methods/getOwner?anchor=getOwner) to perform lookups through their application
+can use [`getOwner`](https://api.emberjs.com/ember/release/functions/@ember%2Fowner/getOwner) to perform lookups through their application
 instance at runtime.
 
 For example, this component plays songs with different audio services based

@@ -39,7 +39,9 @@ You can send Ember objects and arrays to the Inspector by using
 `EmberInspector.inspect` within the console.
 
 ```javascript
-let object = Ember.Object.create();
+import EmberObject from '@ember/object';
+
+let object = EmberObject.create();
 EmberInspector.inspect(object);
 ```
 
