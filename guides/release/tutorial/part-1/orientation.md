@@ -24,8 +24,8 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 6.9.1
-node: 20.19.6
+ember-cli: 6.10.0
+node: 20.20.0
 os: linux x64
 ```
 
@@ -46,29 +46,28 @@ Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-renta
   create .prettierignore
   create .prettierrc.mjs
   create .stylelintignore
-  create .stylelintrc.cjs
+  create .stylelintrc.mjs
   create .template-lintrc.mjs
   create .watchmanconfig
   create README.md
-  create /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals/babel.config.cjs
-  create /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals/eslint.config.mjs
   create app/app.js
   create app/components/.gitkeep
   create app/config/environment.js
   create app/controllers/.gitkeep
   create app/deprecation-workflow.js
   create app/helpers/.gitkeep
-  create app/models/.gitkeep
   create app/router.js
   create app/routes/.gitkeep
-  create app/services/.gitkeep
+  create app/services/store.js
   create app/styles/app.css
-  create /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals/app/templates/application.gjs
+  create app/templates/application.gjs
+  create babel.config.mjs
   create config/ember-cli-update.json
   create config/environment.js
   create config/optional-features.json
   create config/targets.js
   create ember-cli-build.js
+  create eslint.config.mjs
   create .gitignore
   create index.html
   create package.json
@@ -119,12 +118,10 @@ super-rentals
 │   │   └── .gitkeep
 │   ├── helpers
 │   │   └── .gitkeep
-│   ├── models
-│   │   └── .gitkeep
 │   ├── routes
 │   │   └── .gitkeep
 │   ├── services
-│   │   └── .gitkeep
+│   │   └── store.js
 │   ├── styles
 │   │   └── app.css
 │   ├── templates
@@ -137,6 +134,28 @@ super-rentals
 │   ├── environment.js
 │   ├── optional-features.json
 │   └── targets.js
+├── dist
+│   ├── @embroider
+│   │   └── virtual
+│   │       ├── app.css
+│   │       ├── test-support.css
+│   │       ├── test-support.js
+│   │       ├── vendor.css
+│   │       └── vendor.js
+│   ├── assets
+│   │   ├── app-BQizcYp5.js
+│   │   ├── app-BsLReVUA.css
+│   │   ├── main-BrJmI0E2.js
+│   │   ├── modules-4-12-1Tpr-lU6.js
+│   │   ├── tests-Bfhe-jay.js
+│   │   └── tests-CFFHI-JI.css
+│   ├── ember-welcome-page
+│   │   └── construction.png
+│   ├── tests
+│   │   └── index.html
+│   ├── index.html
+│   ├── robots.txt
+│   └── testem.js
 ├── public
 │   └── robots.txt
 ├── tests
@@ -148,6 +167,9 @@ super-rentals
 │   │   └── .gitkeep
 │   ├── index.html
 │   └── test-helper.js
+├── tmp
+│   └── compat-prebuild
+│       └── .stage2-output
 ├── .editorconfig
 ├── .ember-cli
 ├── .env.development
@@ -155,11 +177,11 @@ super-rentals
 ├── .prettierignore
 ├── .prettierrc.mjs
 ├── .stylelintignore
-├── .stylelintrc.cjs
+├── .stylelintrc.mjs
 ├── .template-lintrc.mjs
 ├── .watchmanconfig
 ├── README.md
-├── babel.config.cjs
+├── babel.config.mjs
 ├── ember-cli-build.js
 ├── eslint.config.mjs
 ├── index.html
@@ -168,7 +190,7 @@ super-rentals
 ├── testem.cjs
 └── vite.config.mjs
 
-28 directories, 58 files
+26 directories, 57 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
@@ -195,18 +217,18 @@ Build successful (9761ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 389ms
+Babel: @embroider/macros (1) | 417ms
 
 
 
-  VITE v7.3.0  ready in 3754 ms
+  VITE v7.3.1  ready in 3542 ms
 
   ➜  Local:   http://localhost:4200/
 ```
 
 The development server is responsible for compiling our app and serving it to the browsers. It may take a while to boot up. Once it's up and running, open your favorite browser and head to <http://localhost:4200>. You should see the following welcome page:
 
-<img src="/images/tutorial/part-1/orientation/welcome@2x.png" alt="Welcome to Ember!" width="1024" height="919">
+<img src="/images/tutorial/part-1/orientation/welcome@2x.png" alt="Welcome to Ember!" width="1024" height="964">
 
 <div class="cta">
   <div class="cta-note">
@@ -238,7 +260,7 @@ import { WelcomePage } from 'ember-welcome-page';
   {{outlet}}
 
   {{! The following component displays Ember's default welcome message. }}
-  <WelcomePage />
+  <WelcomePage @extension="gjs" />
   {{! Feel free to remove this! }}
   Hello World!!!
 </template>
