@@ -69,7 +69,6 @@ ENV.LOG_STACKTRACE_ON_DEPRECATION = true;
 ### Implement a window error event listener to log all errors in production
 
 ```javascript {data-filename=app/app.js}
-import fetch from 'fetch';
 // ...
 window.addEventListener('error', function(error) {
   fetch('/error-notification', {
