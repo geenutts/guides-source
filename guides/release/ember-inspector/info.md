@@ -1,15 +1,7 @@
-To see a list of libraries used in your application, click on the `Info` menu. This view displays the libraries used, along with their version.
+The `Info` tab shows some of the libraries used in your application, along with their version.
 
 <img src="/images/guides/ember-inspector/v4.3.4/info-screenshot.png" width="680"/>
 
-### Registering a Library
-
-If you would like to add your own application or library to the list, you can register it using:
-
-```javascript
-Ember.libraries.register(libraryName, libraryVersion);
-```
-
-#### Ember CLI
-
 If you're using the [ember-cli-app-version](https://github.com/embersherpa/ember-cli-app-version) addon, your application's name and version will be added to the list automatically.
+
+Libraries only appear in this list if they manually register themselves with Ember. So we don't recommend relying on this tab anymore, it's better to use any tool that's designed to analyze your package.json instead.

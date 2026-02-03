@@ -1,5 +1,5 @@
 _Container testing methods and computed properties follow previous patterns shown
-in [Testing Basics](../unit-testing-basics/) because Ember.Route extends Ember.Object._
+in [Testing Basics](../unit-testing-basics/) because Route extends EmberObject._
 
 Testing routes can be done both via application tests or container tests. Application tests
 will likely provide better coverage for routes because routes are typically used

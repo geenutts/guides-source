@@ -207,8 +207,6 @@
       url: "configuring-ember-cli"
     - title: "Handling Deprecations"
       url: "handling-deprecations"
-    - title: "Disabling Prototype Extensions"
-      url: "disabling-prototype-extensions"
     - title: "Specifying the URL Type"
       url: "specifying-url-type"
     - title: "Embedding Applications"

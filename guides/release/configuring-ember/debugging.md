@@ -61,9 +61,9 @@ export default class App extends Application {
 In addition to what is described in the [Handling Deprecations guide](../handling-deprecations/),
 you can turn on the following settings:
 
-```javascript
-Ember.ENV.RAISE_ON_DEPRECATION = true;
-Ember.ENV.LOG_STACKTRACE_ON_DEPRECATION = true;
+```javascript {data-filename=config/environment.js}
+ENV.RAISE_ON_DEPRECATION = true;
+ENV.LOG_STACKTRACE_ON_DEPRECATION = true;
 ```
 
 ### Implement a window error event listener to log all errors in production
@@ -81,10 +81,10 @@ window.addEventListener('error', function(error) {
 });
 ```
 
-### Errors within `Ember.run.later` Backburner
+### Errors within `run` Backburner
 
 [Backburner.js](https://github.com/ebryn/backburner.js) has support for stitching the stacktraces together so that you can
-track down where an error thrown by `Ember.run.later` is being initiated from. Unfortunately,
+track down where an error thrown by `run` is being initiated from. Unfortunately,
 this is quite slow and is not appropriate for production or even normal development.
 
 To enable full stacktrace mode in Backburner, and thus determine the stack of the task

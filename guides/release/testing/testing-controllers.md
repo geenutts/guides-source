@@ -1,8 +1,8 @@
 _Container testing methods and computed properties follow previous patterns shown
-in [Testing Basics](../unit-testing-basics/) because Ember.Controller extends Ember.Object._
+in [Testing Basics](../unit-testing-basics/) because Controller extends EmberObject._
 
 Controllers can be tested using the `setupTest` helper which is part
-of the ember-qunit framework. The tests written for instances like `Ember.Controller` are
+of the ember-qunit framework. The tests written for instances like `Controller` are
 also described as container tests.
 
 ### Testing Controller Actions
