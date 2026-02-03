@@ -181,7 +181,6 @@ In the few cases where you _do_ need to use `get`, you can chain `get` calls ins
 <!-- Internal links -->
 
 [components]: ../../core-concepts/invokables/#toc_glimmer-components
-[global-types]: ../../additional-resources/faq/#toc_global-types-for-your-project
 [migrate-from-computed]: ../../../upgrading/current-edition/tracked-properties/
 [migrate-from-mixins]: ../../../upgrading/current-edition/native-classes/#toc_mixins
 [migrating-from-classic-classes]: ../../../upgrading/current-edition/native-classes/
