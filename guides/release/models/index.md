@@ -95,7 +95,6 @@ data, storing it, and showing the list of drafts, like this:
 ```gjs {data-filename=app/components/list-of-drafts.gjs}
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import fetch from "fetch";
 
 export default class ListOfDraftsComponent extends Component {
   @tracked drafts;
@@ -126,7 +125,6 @@ component.
 ```gjs {data-filename=app/components/drafts-button.gjs}
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import fetch from "fetch";
 import { LinkTo } from '@ember/routing';
 
 export default class DraftsButtonComponent extends Component {
