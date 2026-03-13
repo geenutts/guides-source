@@ -65,7 +65,7 @@ You'll want to remove any linter / completion manager you currently have install
 
 Only one of these solutions is needed, with tree-sitter being the highest fidelity.
 
-#### NeoVim via TreeSitter
+#### Neovim via TreeSitter
 
 [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -
 high-fidelity static highlighting with support for `.gjs` and `.gts` and embedded `hbs`.
@@ -74,7 +74,7 @@ Example `nvim-treesitter` config [can be found here](https://github.com/NullVoxP
 
 #### Vim v9.2.0152 or later
 
-Use the [built-in highlighting support](https://github.com/vim/vim/pull/19569) available in Vim v9.2.0152+ or the latest NeoVim (nightly).
+Use the [built-in highlighting support](https://github.com/vim/vim/pull/19569) available in Vim v9.2.0152+ or the latest Neovim (nightly).
 
 #### Older versions:
 
