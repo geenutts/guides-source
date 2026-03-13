@@ -63,35 +63,16 @@ For a more fine-grained configuration,
 
 ### Syntax Highlighting
 
-<<<<<<< NullVoxPopuli-patch-1
-=======
-Only one of these solutions is needed, with tree-sitter being the highest fidelity.
+Included with `ember.nvim`.
 
-#### Neovim via TreeSitter
-
->>>>>>> master
 [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -
 high-fidelity static highlighting with support for `.gjs` and `.gts` and embedded `hbs`.
 Use `ensure_installed = { 'glimmer' }`.
 Example `nvim-treesitter` config [can be found here](https://github.com/NullVoxPopuli/dotfiles/blob/main/home/.config/nvim/lua/plugins/syntax.lua#L15)
 
-<<<<<<< NullVoxPopuli-patch-1
-=======
-#### Vim v9.2.0152 or later
-
-Use the [built-in highlighting support](https://github.com/vim/vim/pull/19569) available in Vim v9.2.0152+ or the latest Neovim (nightly).
-
-#### Older versions:
-
-[vim-ember-hbs](https://github.com/joukevandermaas/vim-ember-hbs) -
-Add Ember template syntax highlighting and indentation to Vim.
-To get embedded highlighting will involve these additional plugins:
-
-- [vim-javascript](https://github.com/pangloss/vim-javascript)
-- [vim-js-pretty-template](https://github.com/Quramy/vim-js-pretty-template)
->>>>>>> master
-
 ### Language Server
+
+Included with `ember.nvim`.
 
 Only one of these solutions should be used at a time.
 
@@ -106,10 +87,6 @@ An IntelliSense engine which takes control over all linting, hinting, and langua
 With the ember plugin [coc-ember](https://github.com/NullVoxPopuli/coc-ember) -
 Ember.js language server extension including useful configuration instructions.
 
-or
-
-[ALE](https://github.com/dense-analysis/ale) - a plugin to manage LSP support with Vim. Use the `tsserver` LSP for Glint v2 project or [this config](https://github.com/dense-analysis/ale/pull/5077/changes) for Glint v1 projects
-
 ### Snippets / Workflow
 
 See instructions on [ember-tooling/snippets](https://github.com/ember-tooling/snippets)
@@ -118,13 +95,14 @@ See instructions on [ember-tooling/snippets](https://github.com/ember-tooling/sn
 
 Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient.
 It is included as "vi" with most UNIX systems and with Apple OS X.
-Alternatively, Neovim is a hyper-extensible Vim-based text editor.
-Both editors share a range of cross-compatible extensions listed below.
-
-You'll want to remove any linter / completion manager you currently have installed
-(or disable them for `.js`, `.ts` or `.hbs` files), and follow the install guides for the following packages:
 
 ### Syntax Highlighting
+
+#### Vim v9.2.0152 or later
+
+Use the [built-in highlighting support](https://github.com/vim/vim/pull/19569) available in Vim v9.2.0152+ or the latest Neovim (nightly).
+
+#### Older versions:
 
 [vim-ember-hbs](https://github.com/joukevandermaas/vim-ember-hbs) -
 Add Ember template syntax highlighting and indentation to Vim.
@@ -132,6 +110,11 @@ To get embedded highlighting will involve these additional plugins:
 
 - [vim-javascript](https://github.com/pangloss/vim-javascript)
 - [vim-js-pretty-template](https://github.com/Quramy/vim-js-pretty-template)
+
+
+### Language Server
+
+[ALE](https://github.com/dense-analysis/ale) - a plugin to manage LSP support with Vim. Use the `tsserver` LSP for Glint v2 project or [this config](https://github.com/dense-analysis/ale/pull/5077/changes) for Glint v1 projects
 
 ### Snippets / Workflow
 
