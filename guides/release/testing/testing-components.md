@@ -609,3 +609,12 @@ module('Integration | Component | delayed-typeahead', function(hooks) {
 ```
 
 Notice that we don't need to call `await rerender()` in this test to make sure the template has updated. This is because the work done in `await rerender()` is fully encapsulated in the `await settled()` so we don't need to call both.
+
+### Extending the meaning of `settled()`
+
+When adding new sources of asynchrony to your app, like:
+ - a third party library that does async work
+ - manual calls to async browser APIs like `fetch` or `IndexedDB`
+
+it's convenient to make `settled()` aware of that async work so that all your existing tests will wait for it to complete. For this, you can use [@ember/test-waiters](https://github.com/emberjs/ember-test-waiters). See [the @ember/test-waiters readme](https://github.com/emberjs/ember-test-waiters) for detailed examples.
+
