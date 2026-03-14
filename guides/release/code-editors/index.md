@@ -57,7 +57,7 @@ See instructions on [ember-tooling/snippets](https://github.com/ember-tooling/sn
 
 ## Neovim
 
-Similar to VSCode's Ember Extension Pack, neovim has a similar package, [ember.nvim](https://github.com/NullVoxPopuli/ember.nvim), to bundle everything needed to use Ember in neovim, including syntax highlighting, support glint/typescript, etc.
+Similar to VSCode's Ember Extension Pack, Neovim has a similar package, [ember.nvim](https://github.com/NullVoxPopuli/ember.nvim), to bundle everything needed to use Ember in Neovim, including syntax highlighting, support glint/typescript, etc.
 
 For a more fine-grained configuration,
 
