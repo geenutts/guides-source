@@ -35,6 +35,10 @@ and maintain consistent coding styles between different editors and IDEs.
 [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) -
 Prettier is an opinionated code formatting tool. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary. Prettier supports Handlebars, Ember and Glimmer out of the box.
 
+### Snippets
+
+See instructions on [ember-tooling/snippets](https://github.com/ember-tooling/snippets)
+
 ### Typed Glimmer Templates
 
 <div class="cta">
@@ -51,41 +55,24 @@ Prettier is an opinionated code formatting tool. It enforces a consistent style 
 
 [Glint](https://marketplace.visualstudio.com/items?itemName=typed-ember.glint-vscode) is a set of tools to aid in developing code that uses the Glimmer VM for rendering, such as Ember.js v3.24+ and GlimmerX projects.
 
-## Vim and Neovim
+## Neovim
 
-Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient.
-It is included as "vi" with most UNIX systems and with Apple OS X.
-Alternatively, Neovim is a hyper-extensible Vim-based text editor.
-Both editors share a range of cross-compatible extensions listed below.
+Similar to VSCode's Ember Extension Pack, Neovim has a similar package, [ember.nvim](https://github.com/NullVoxPopuli/ember.nvim), to bundle everything needed to use Ember in Neovim, including syntax highlighting, support glint/typescript, etc.
 
-You'll want to remove any linter / completion manager you currently have installed
-(or disable them for `.js`, `.ts` or `.hbs` files), and follow the install guides for the following packages:
+For a more fine-grained configuration,
 
 ### Syntax Highlighting
 
-Only one of these solutions is needed, with tree-sitter being the highest fidelity.
-
-#### Neovim via TreeSitter
+Included with `ember.nvim`.
 
 [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -
 high-fidelity static highlighting with support for `.gjs` and `.gts` and embedded `hbs`.
 Use `ensure_installed = { 'glimmer' }`.
 Example `nvim-treesitter` config [can be found here](https://github.com/NullVoxPopuli/dotfiles/blob/main/home/.config/nvim/lua/plugins/syntax.lua#L15)
 
-#### Vim v9.2.0152 or later
-
-Use the [built-in highlighting support](https://github.com/vim/vim/pull/19569) available in Vim v9.2.0152+ or the latest Neovim (nightly).
-
-#### Older versions:
-
-[vim-ember-hbs](https://github.com/joukevandermaas/vim-ember-hbs) -
-Add Ember template syntax highlighting and indentation to Vim.
-To get embedded highlighting will involve these additional plugins:
-
-- [vim-javascript](https://github.com/pangloss/vim-javascript)
-- [vim-js-pretty-template](https://github.com/Quramy/vim-js-pretty-template)
-
 ### Language Server
+
+Included with `ember.nvim`.
 
 Only one of these solutions should be used at a time.
 
@@ -100,7 +87,32 @@ An IntelliSense engine which takes control over all linting, hinting, and langua
 With the ember plugin [coc-ember](https://github.com/NullVoxPopuli/coc-ember) -
 Ember.js language server extension including useful configuration instructions.
 
-or
+### Snippets / Workflow
+
+See instructions on [ember-tooling/snippets](https://github.com/ember-tooling/snippets)
+
+## Vim
+
+Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient.
+It is included as "vi" with most UNIX systems and with Apple OS X.
+
+### Syntax Highlighting
+
+#### Vim v9.2.0152 or later
+
+Use the [built-in highlighting support](https://github.com/vim/vim/pull/19569) available in Vim v9.2.0152+ or the latest Neovim (nightly).
+
+#### Older versions:
+
+[vim-ember-hbs](https://github.com/joukevandermaas/vim-ember-hbs) -
+Add Ember template syntax highlighting and indentation to Vim.
+To get embedded highlighting will involve these additional plugins:
+
+- [vim-javascript](https://github.com/pangloss/vim-javascript)
+- [vim-js-pretty-template](https://github.com/Quramy/vim-js-pretty-template)
+
+
+### Language Server
 
 [ALE](https://github.com/dense-analysis/ale) - a plugin to manage LSP support with Vim. Use the `tsserver` LSP for Glint v2 project or [this config](https://github.com/dense-analysis/ale/pull/5077/changes) for Glint v1 projects
 
