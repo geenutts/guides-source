@@ -251,7 +251,6 @@ If a route you are trying to link to has multiple dynamic segments, like `/photo
 
 ```gjs
 import { LinkTo } from '@ember/routing';
-import { array } from '@ember/helper';
 
 <template>
   <LinkTo @route="photos.photo.comments.comment" @models={{array 4 18}}>

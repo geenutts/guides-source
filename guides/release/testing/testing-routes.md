@@ -15,7 +15,7 @@ sub-routes and controllers.
 > By default, Ember CLI does not generate a file for its application route.  To
 > extend the behavior of the ember application route we will run the command
 > `ember generate route application`.  Ember CLI does however generate an application
-> template, so when asked whether we want to overwrite `app/templates/application.hbs`
+> template, so when asked whether we want to overwrite `app/templates/application.gjs`
 > we will answer 'n'.
 
 ```javascript {data-filename=app/routes/application.js}

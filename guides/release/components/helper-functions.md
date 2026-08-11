@@ -445,7 +445,6 @@ Using the [`{{array}}`](https://api.emberjs.com/ember/release/classes/@ember%2Fh
 you can pass arrays directly from the template as an argument to your components.
 
 ```gjs
-import { array } from '@ember/helper';
 import MyComponent from 'my-app/components/my-component';
 
 const myOtherPerson = 'George Washington';
@@ -461,7 +460,7 @@ const myOtherPerson = 'George Washington';
 </template>
 ```
 
-In the component's template, you can then use the `people` argument as an array:
+In the component's implementation, you can then use the `people` argument as an array:
 
 ```gjs {data-filename="app/components/my-component.gjs"}
 <template>
@@ -480,7 +479,6 @@ helper, you can pass objects directly from the template as an argument to your
 components.
 
 ```gjs
-import { hash } from '@ember/helper';
 import Greeting from 'my-app/components/greeting';
 
 <template>
@@ -493,7 +491,7 @@ import Greeting from 'my-app/components/greeting';
 </template>
 ```
 
-In the component's template, you can then use the `person` object:
+In the component's implementation, you can then use the `person` object:
 
 ```gjs {data-filename="app/components/greeting.gjs"}
 <template>

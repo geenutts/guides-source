@@ -79,7 +79,6 @@ So, to hook up the button to toggle the `isConfirming` property, we'll define a 
 ```gjs {data-filename=app/components/button-with-confirmation.gjs}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { on } from '@ember/modifier';
 
 export default class ButtonWithConfirmationComponent extends Component {
   @tracked isConfirming = false;
@@ -114,7 +113,6 @@ of the modal buttons, so we can add a couple more actions to handle that:
 ```gjs {data-filename=app/components/button-with-confirmation.gjs}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { on } from '@ember/modifier';
 
 export default class ButtonWithConfirmationComponent extends Component {
   @tracked isConfirming = false;
@@ -241,7 +239,6 @@ user wants to take the action they indicated by clicking the button:
 ```gjs {data-filename=app/components/button-with-confirmation.gjs}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { on } from '@ember/modifier';
 
 export default class ButtonWithConfirmationComponent extends Component {
   @tracked isConfirming = false;
@@ -311,7 +308,6 @@ the confirmation modal. We can use an `async` function to handle that promise:
 ```gjs {data-filename=app/components/button-with-confirmation.gjs}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { on } from '@ember/modifier';
 
 export default class ButtonWithConfirmationComponent extends Component {
   @tracked isConfirming = false;
@@ -386,7 +382,6 @@ child. For example, if we want to use the button to send a message of type
 
 ```gjs {data-filename=app/components/send-message.gjs}
 import Component from '@glimmer/component';
-import { fn } from '@ember/helper';
 import ButtonWithConfirmation from 'my-app/components/button-with-confirmation';
 
 export default class SendMessageComponent extends Component {
@@ -638,7 +633,6 @@ only the user's account `id` string.
 
 ```gjs {data-filename=app/components/system-preferences-editor.gjs}
 import Component from '@glimmer/component';
-import { fn } from '@ember/helper';
 import UserProfile from 'my-app/components/user-profile';
 
 export default class SystemPreferencesEditorComponent extends Component {
@@ -674,7 +668,6 @@ the parent `system-preferences-editor.gjs` and pass the local `deleteUser` actio
 ```gjs {data-filename=app/components/system-preferences-editor.gjs}
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
-import { fn } from '@ember/helper';
 import UserProfile from 'my-app/components/user-profile';
 
 export default class SystemPreferencesEditorComponent extends Component {

@@ -111,17 +111,17 @@ Rendering tests let you test components using Ember's rendering engine. This mea
 
 Consider a button component. For simplicity, assume that the component keeps track of the number of clicks and displays it as label. (In other words, this component doesn't allow arguments or actions to be passed.)
 
-```javascript {data-filename=tests/integration/components/simple-button-test.js}
+```javascript {data-filename=tests/integration/components/simple-button-test.gjs}
 import { click, render } from '@ember/test-helpers';
+import SimpleButton from 'my-app-name/components/simple-button';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
-import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 
 module('Integration | Component | simple-button', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should keep track of clicks', async function(assert) {
-    await render(hbs`<SimpleButton />`);
+    await render(<template><SimpleButton /></template>);
     assert.dom('[data-test-label]').hasText('0 clicks');
 
     await click('[data-test-button]');
@@ -133,7 +133,7 @@ module('Integration | Component | simple-button', function(hooks) {
 });
 ```
 
-Note, we imported `render` and `click` from [@ember/test-helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md) to show and interact with the component. We also imported `hbs` from [ember-cli-htmlbars](https://github.com/ember-cli/ember-cli-htmlbars) to help with inline template definitions. With these methods, we can check if clicking on the component correctly updates its output to the user.
+Note, we imported `render` and `click` from [@ember/test-helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md) to show and interact with the component. With these methods, we can check if clicking on the component correctly updates its output to the user.
 
 Here are more examples where rendering tests are ideal:
 

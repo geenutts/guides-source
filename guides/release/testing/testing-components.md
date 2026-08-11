@@ -212,7 +212,6 @@ Imagine you have the following component that changes its title when a button is
 
 ```gjs {data-filename="app/components/magic-title.gjs"}
 import Component from '@glimmer/component';
-import { on } from '@ember/modifier';
 import { tracked } from '@glimmer/tracking';
 
 export default class MagicTitleComponent extends Component {
@@ -272,7 +271,6 @@ passing along the form's data:
 ```gjs {data-filename="app/components/comment-form.gjs"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { on } from '@ember/modifier';
 
 export default class CommentFormComponent extends Component {
   @tracked comment = '';
@@ -542,7 +540,6 @@ Imagine you have a typeahead component that uses [`debounce`](https://api.emberj
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { debounce } from '@ember/runloop';
-import { on } from '@ember/modifier';
 
 export default class DelayedTypeaheadComponent extends Component {
   @tracked searchValue = '';

@@ -177,7 +177,6 @@ add an action for creating the new message. We'll add this to the
 ```gjs {data-filename="app/components/new-message-input.gjs"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { on } from '@ember/modifier';
 import { Input } from '@ember/component';
 
 export default class NewMessageInputComponent extends Component {
