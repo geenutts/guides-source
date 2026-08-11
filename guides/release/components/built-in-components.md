@@ -164,7 +164,6 @@ We recommend using the `{{on}}` modifier to call an action on specific events su
 import Component from "@glimmer/component";
 import { Input } from '@ember/component';
 import { tracked } from '@glimmer/tracking';
-import { on } from '@ember/modifier';
 
 export default class Example extends Component {
   @tracked name = '';
@@ -256,7 +255,6 @@ To call an action on specific events, use the `{{on}}` modifier:
 import Component from "@glimmer/component";
 import { Input } from '@ember/component';
 import { tracked } from '@glimmer/tracking';
-import { on } from '@ember/modifier';
 
 export default class Example extends Component {
   @tracked isAdmin = false;

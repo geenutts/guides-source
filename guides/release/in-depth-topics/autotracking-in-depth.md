@@ -107,7 +107,6 @@ action, as in this example component.
 ``` gjs { data-filename=app/components/hello.gjs data-diff="+3,+18,+19,+20,+21,+25,+26,+27,+28,+29,+30" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { on } from '@ember/modifier';
 
 export default class HelloComponent extends Component {
   @tracked language = 'en';
@@ -151,7 +150,6 @@ load the user's preferred language:
 ``` gjs { data-filename=app/components/hello.gjs data-diff="+6,+7,+8,+9,+10,+11,+12,+13,+14,+15" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { on } from '@ember/modifier';
 
 export default class HelloComponent extends Component {
   constructor() {
@@ -205,7 +203,6 @@ works through _methods_ or _functions_ as well:
 ``` gjs { data-diff="+17,+18,+19,+20,+21,+24,+25,+26,+27" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { on } from '@ember/modifier';
 
 export default class HelloComponent extends Component {
   constructor() {
@@ -294,8 +291,6 @@ export default class ApplicationRoute extends Route {
 
 ```gjs {data-filename=app/templates/application.gjs}
 import Component from '@glimmer/component';
-import { on } from '@ember/modifier';
-import { fn } from '@ember/helper';
 
 export default class ApplicationRouteComponent extends Component {
   updateName = (title, name) => {

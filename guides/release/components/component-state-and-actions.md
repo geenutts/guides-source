@@ -78,7 +78,6 @@ To make those event handlers do something, we will need to define those methods 
 ```gjs {data-filename="app/components/counter.gjs" data-diff="+3,+8,+9,+10,+11,+12,+13,+14,-19,+20,-21,+22"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { on } from '@ember/modifier';
 
 export default class CounterComponent extends Component {
   @tracked count = 0;
@@ -121,8 +120,6 @@ helper.
 ```gjs {data-filename="app/components/counter.gjs" data-diff="+4,-9,-10,-11,-12,-13,-14,-15,+17,+18,+19,-24,+25,-26,+27"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { on } from '@ember/modifier';
-import { fn } from '@ember/helper';
 
 export default class CounterComponent extends Component {
   @tracked count = 0;
@@ -189,8 +186,6 @@ Then, we'll update the template to call the `double` action. We'll also add
 ```gjs {data-filename="app/components/counter.gjs" data-diff="+8,+14,+15,+16,+20,+25"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { on } from '@ember/modifier';
-import { fn } from '@ember/helper';
 
 export default class CounterComponent extends Component {
   @tracked count = 0;
@@ -228,8 +223,7 @@ We can also update the template to use the `total` property.
 ```gjs {data-filename="app/components/counter.gjs" data-diff="+10,+11,+12,+25"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { on } from '@ember/modifier';
-import { fn } from '@ember/helper';
+
 
 export default class CounterComponent extends Component {
   @tracked count = 0;
@@ -298,7 +292,6 @@ let's allow it to be passed in.  We'll start by creating a new component called 
 ```gjs {data-filename="app/components/double-it.gjs"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { on } from '@ember/modifier';
 import Counter from './counter.gjs';
 
 export default class DoubleItComponent extends Component {
@@ -407,7 +400,6 @@ function) with the new value for `multiple`, and the parent component, `DoubleIt
 ```gjs {data-filename="app/components/double-it.gjs"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { on } from '@ember/modifier';
 import Counter from './counter.gjs';
 
 export default class DoubleItComponent extends Component {

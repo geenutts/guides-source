@@ -127,8 +127,6 @@ Below we add a remove action to the `cart-contents` component.
 ```gjs {data-filename=app/components/cart-contents.gjs}
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
-import { on } from '@ember/modifier';
-import { fn } from '@ember/helper';
 
 export default class CartContentsComponent extends Component {
   @service('shopping-cart') cart;

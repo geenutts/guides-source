@@ -85,7 +85,6 @@ There, we defined component which accepted a `srcUrl` argument and used a `play-
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import playWhen from 'my-app/modifiers/play-when';
-import { on } from '@ember/modifier';
 
 export default class AudioPlayer extends Component {
   @tracked isPlaying = false;
@@ -119,7 +118,6 @@ We can define a signature with those `Args` on it and apply it to the component 
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import playWhen from 'my-app/modifiers/play-when';
-import { on } from '@ember/modifier';
 
 interface AudioPlayerSignature {
   Args: {
@@ -155,7 +153,6 @@ Now, let's expand on this example to give callers the ability to apply attribute
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import playWhen from 'my-app/modifiers/play-when';
-import { on } from '@ember/modifier';
 
 interface AudioPlayerSignature {
   Args: {
@@ -192,7 +189,6 @@ We can also let the user provide a fallback for the case where the audio element
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import playWhen from 'my-app/modifiers/play-when';
-import { on } from '@ember/modifier';
 
 interface AudioPlayerSignature {
   Args: {
@@ -238,7 +234,6 @@ To represent this, we will update the `default` block to be named `fallback` ins
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import playWhen from 'my-app/modifiers/play-when';
-import { on } from '@ember/modifier';
 
 interface AudioPlayerSignature {
   Args: {
@@ -291,7 +286,6 @@ When working in JavaScript, we can provide the exact same information using JSDo
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import playWhen from 'my-app/modifiers/play-when';
-import { on } from '@ember/modifier';
 
 /**
  * @typedef AudioPlayerSignature

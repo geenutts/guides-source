@@ -331,7 +331,6 @@ attach some JavaScript to the component.
 Let's use the [`on` modifier](../../components/template-lifecycle-dom-and-modifiers/#toc_event-handlers) to handle click events on the button:
 
 ```gjs {data-filename="app/components/people-list.gjs"}
-import { on } from '@ember/modifier'
 
 function showPerson(clickEvent) {
   alert(`You clicked on a button labeled ${clickEvent.target.innerHTML}`);
@@ -353,9 +352,6 @@ function showPerson(clickEvent) {
 Now let's extend our example to pass the Person to our event handler as an argument. We can use the [`fn` helper](../../components/component-state-and-actions/#toc_passing-arguments-to-actions):
 
 ```gjs {data-filename="app/components/people-list.gjs"}
-import { on } from '@ember/modifier'
-import { fn } from '@ember/helper';
-
 function showPerson(person) {
   alert(`You clicked on ${person}`);
 }
@@ -376,8 +372,6 @@ function showPerson(person) {
 Many components will need to maintain some state. Let's introduce a `currentPerson` that keeps track of which Person the user clicked on last. The idiomatic way to keep state in an Ember component is to use [`@tracked`](../../in-depth-topics/autotracking-in-depth/) on a component class:
 
 ```gjs {data-filename="app/components/people-list.gjs"}
-import { on } from '@ember/modifier'
-import { fn } from '@ember/helper';
 import { tracked } from '@glimmer/tracking';
 import Component from '@glimmer/component';
 

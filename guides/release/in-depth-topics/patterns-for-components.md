@@ -216,7 +216,6 @@ The `component` helper is often used when yielding components to blocks. For exa
 
 ```gjs {data-filename=app/components/super-form.gjs}
 import Component from '@glimmer/component';
-import { hash } from '@ember/helper';
 import SuperInput from 'my-app/components/super-input';
 import SuperTextarea from 'my-app/components/super-textarea';
 import SuperSubmit from 'my-app/components/super-submit';
@@ -260,7 +259,6 @@ We can even use helpers and modifiers in the same way. Let's extend the SuperFor
 
 ```gjs {data-filename=app/components/super-form.gjs}
 import Component from '@glimmer/component';
-import { hash } from '@ember/helper';
 import SuperInput from 'my-app/components/super-input';
 import SuperTextarea from 'my-app/components/super-textarea';
 import SuperSubmit from 'my-app/components/super-submit';
